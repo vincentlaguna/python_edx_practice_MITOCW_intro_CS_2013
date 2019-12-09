@@ -1,0 +1,12 @@
+epsilon = 0.01
+y = 25
+guess = y/2.0
+
+while abs(guess*guess) >= epsilon:
+    guess = guess - (((guess**2) - y)/(2*guess))
+    if abs(guess*guess) == epsilon:
+        print('Square root of ' + str(guess) + ' is about ' + str(guess))
+ 
+
+
+

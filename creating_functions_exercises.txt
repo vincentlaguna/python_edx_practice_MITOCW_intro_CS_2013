@@ -1,0 +1,59 @@
+#we can then invoke by
+
+#z = max(3,4)
+
+##def max(x,y):
+##    if x > y:
+##        return x
+##    else:
+##        return y
+
+
+#indicate the output of the function a:
+
+##def a(x):
+##   '''
+##   x: int or float.
+##   '''
+##   return x + 1
+##
+##
+#Indicate the type of the output that the function b will yield
+
+##def b(x):
+##   '''
+##   x: int or float.
+##   '''
+##   return x + 1.0
+##
+##
+#Indicate the type of the output that the function c yield
+
+##def c(x, y):
+##   '''
+##   x: int or float. 
+##   y: int or float.
+##   '''
+##   return x + y
+
+#indicate the type of f. b will yield
+
+##def d(x, y):
+##   '''
+##   x: Can be of any type.
+##   y: Can be of any type.
+##   '''
+##   return x > y
+
+x = 3
+y = 2
+z = 1
+
+def e(x, y, z):
+   '''
+   x: Can be of any type.
+   y: Can be of any type.
+   z: Can be of any type.
+   '''
+   return x >= y and x <= z
+

@@ -1,0 +1,117 @@
+##M.I.T. 6.00SC Lecture 4 Machine Interpretation of a Program
+#let us look at the flawed code:
+
+##x = 0.5
+##epsilon = 0.01
+##low = 0.0
+##high = 
+##ans = (high + low)/2.0
+##while abs(ans**2 - x) >= epsilon and ans <= x:
+##    print 'ans =', ans, 'low =', low, 'high =', high
+##    if ans**2 < x:
+##        low = ans
+##    else:
+##        high = ans
+##    ans = (high + low)/2.0
+##print ans, 'is close to square root of', x
+##
+#debug: the search with the region did not have answer
+#change line 3 from x to max(x, 1.0)
+
+x = 0.5
+epsilon = 0.01
+low = 0.0
+high = max(x, 1.0)
+ans = (high + low)/2.0
+while abs(ans**2 - x) >= epsilon and ans <= x:
+    print 'ans =', ans, 'low =', low, 'high =', high
+    if ans**2 < x:
+        low = ans
+    else:
+        high = ans
+    ans = (high + low)/2.0
+print ans, 'is close to square root of', x
+
+#Function: let's us break code into reusable funtional units
+#good programmers write efficient code ==> less lines/more function
+
+#Decomposition: it creates structure=>Modules - self-contained/reusable
+#Abstraction: suppresses details
+#you can use the code by 'invoking' it
+
+##def withinEpsilon(x, y, epsilon):
+##    """x,y,epsilon floats. epsilon > 0.0
+##        returns True if x is within epsilon of y"""
+##    return abs(x - y) <= epsilon
+##
+##print withinEpsilon(2,3,1)
+##val = withinEpsilon(2,3,0,5)
+##print val
+##
+##def f(x):
+##    x = x + 1
+##    print 'x =', x
+##    return x
+##
+##x = 100
+##z = f(x)
+##print 'z =', z
+##print 'x =', x
+
+#note that if it returns 'none', = no return invoked
+
+#what happens when call a function?
+#1)the formal parameter, x, is 'bound' to the value of the 'actual' p:x
+#2)upon entry, a new scope is created, a 'mapping from name to objects'
+#3)the interpreter will build scope:f1 calls=>[a bunch of different code]
+#f1scope=g, bound to some code
+#x will be initially bound to the object 3, invoke g creating gscope
+#gscope will create x which will be bound to the string abc
+#it will execute g and then stop
+#note: stackframes==>one module or scope calling another
+#one will stack on a nother and eliminate according to the code
+
+##def f1(x):
+##    def g():
+##        x = 'abc'
+##    x = x + 1
+##    print 'x =', x
+##    g()
+##    assert False
+##    return x
+##
+##x = 3
+##x = f1(x)
+##
+##def isEven(i):
+##    """assumes i is a positive int
+##        returns True if i is even, otherwise False"""
+##    return i%2 == 0
+##
+##def findRoot(pwr, val, epsilon):
+##    """assumes the pwr of an int; val. epsilon floats
+##        pwr and epsilon > 0
+##        if its exists,
+##            return a value within epsilon of val**pwr
+##            otherwise returns None"""
+##    assert type(pwr) == int and type(val) == float\
+##               and type(epsilon) == float
+##    assert pwr > 0 and epsilon > 0
+##    if isEven(pwr) and val < 0:
+##            return None 
+
+#note that assert can break the run
+
+##sumDigits = 0 
+##for c in str(1952):
+##    sumDigits +- int(c)
+##print sumDigits
+
+##x = 100
+##divisors = ()
+##print divisors
+##for i in range(1, x):
+##    if x%i == 0:
+##        divisors = divisors + (i,)
+##        print divisors
+
